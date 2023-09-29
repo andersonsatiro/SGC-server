@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  username String @unique
+  password String
+}
+
+model Leader {
+  id                    String         @id @default(uuid())
+  name                  String         @unique
+  numberOfCollaborators Int            @default(0)
+  monthlyIncome         Float          @default(0.0)
+  influence             Int
+  collaborators         Collaborator[]
+}
+
+model Collaborator {
+  id        String @id @default(uuid())
+  name      String
+  salary    Float  @default(0.0)
+  influence Int
+  leader    Leader @relation(fields: [leaderId], references: [id])
+  leaderId  String
+}
+
+model JobPositions {
+  id        String @id @default(uuid())
+  name      String
+  influence Int
+}
+
+model LeadershipPositions {
+  id        String @id @default(uuid())
+  name      String
+  influence Int
+}
