@@ -19,6 +19,7 @@ model User {
 model Leader {
   id                    String         @id @default(uuid())
   name                  String         @unique
+  jobRole               String
   numberOfCollaborators Int            @default(0)
   monthlyIncome         Float          @default(0.0)
   influence             Int
@@ -26,22 +27,25 @@ model Leader {
 }
 
 model Collaborator {
-  id        String @id @default(uuid())
-  name      String
-  salary    Float  @default(0.0)
+  id      String @id @default(uuid())
+  name    String @unique
+  jobRole String
+  salary  Float  @default(0.0)
+
   influence Int
-  leader    Leader @relation(fields: [leaderId], references: [id])
-  leaderId  String
+
+  leader   Leader @relation(fields: [leaderId], references: [id])
+  leaderId String
 }
 
 model JobPositions {
   id        String @id @default(uuid())
-  name      String
+  name      String @unique
   influence Int
 }
 
 model LeadershipPositions {
   id        String @id @default(uuid())
-  name      String
+  name      String @unique
   influence Int
 }
