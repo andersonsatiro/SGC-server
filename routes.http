@@ -1,0 +1,8 @@
+# @name register-new-leader
+POST http://localhost:3333/register/leader
+Content-Type: application/json
+
+{
+    "name": "teste",
+    "jobId": "789b91c1-1e17-4ff0-8c9d-15c7aae1e02c"
+}
