@@ -4,5 +4,19 @@ Content-Type: application/json
 
 {
     "name": "teste",
-    "jobId": "789b91c1-1e17-4ff0-8c9d-15c7aae1e02c"
+    "jobId": "b64fba12-0573-49bb-8086-71c4071c6d64"
+}
+
+
+###
+
+# @name register-new-collaborator
+POST http://localhost:3333/register/collaborator
+Content-Type: application/json
+
+{
+    "name": "João",
+    "salary": 1200,
+    "jobId": "85c15527-5fa7-4bf7-8c07-402ee582d71e",
+    "leaderId": ""
 }
