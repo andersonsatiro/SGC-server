@@ -3,19 +3,29 @@ import { prisma } from "../lib/prisma"
 import { z } from 'zod'
 
 export async function RegisterNewLeader(app: FastifyInstance){
-    app.post('/registerLeader', async (req, reply) => {
+    app.post('/register/leader', async (req, reply) => {
+
         const leaderSchema = z.object({
             name: z.string(),
-            influence: z.number(),
+            jobId: z.string().uuid(),
         })
-        const { name, influence } = leaderSchema.parse(req.body)
+
+        const { name, jobId } = leaderSchema.parse(req.body)
+
+        const leadershipPositions = await prisma.leadershipPositions.findFirstOrThrow({
+            where: {
+                id: jobId
+            }
+        })
 
         await prisma.leader.create({
             data: {
                 name,
-                influence,
+                jobRole: leadershipPositions.name,
+                influence: leadershipPositions.influence
             }
         })
-        return reply.status(201).send("Registered leader")
+
+        return reply.status(201).send('Registered Leader')
     })
 }
