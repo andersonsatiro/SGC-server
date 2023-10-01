@@ -3,7 +3,7 @@ POST http://localhost:3333/register/leader
 Content-Type: application/json
 
 {
-    "name": "teste",
+    "name": "Maria Joaquina",
     "jobId": "b64fba12-0573-49bb-8086-71c4071c6d64"
 }
 
@@ -15,8 +15,19 @@ POST http://localhost:3333/register/collaborator
 Content-Type: application/json
 
 {
-    "name": "João",
-    "salary": 1200,
+    "name": "Marina Silva",
+    "salary": 1220,
     "jobId": "85c15527-5fa7-4bf7-8c07-402ee582d71e",
-    "leaderId": ""
+    "leaderId": "6b6a5e38-7e8c-4c7f-9b5e-8e2640fe5d9f"
 }
+
+###
+
+# @name get-all-leaders
+GET http://localhost:3333/leaders
+
+###
+
+# @name get-all-collaborators
+GET http://localhost:3333/collaborators
+
