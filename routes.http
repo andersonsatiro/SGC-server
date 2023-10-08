@@ -31,3 +31,15 @@ GET http://localhost:3333/leaders
 # @name get-all-collaborators
 GET http://localhost:3333/collaborators
 
+
+###
+
+# @name auth
+POST http://localhost:3333/login
+Content-Type: application/json
+
+{
+    "username": "24ee0aed-c621-462d-b39a-092d9bcdb9e1",
+    "password": "2ca06647-3b9a-4491-9d4a-93f621631dc9"
+}
+
