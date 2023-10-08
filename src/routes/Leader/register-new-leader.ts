@@ -3,7 +3,7 @@ import { prisma } from "../../lib/prisma"
 import { z } from 'zod'
 
 export async function RegisterNewLeader(app: FastifyInstance){
-    app.post('/register/leader', async (req, reply) => {
+    app.post('/register/leader', { preHandler: app.authenticate }, async (req, reply) => {
 
         const leaderSchema = z.object({
             name: z.string(),

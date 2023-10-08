@@ -3,7 +3,7 @@ import { FastifyInstance } from "fastify";
 import { z } from 'zod'
 
 export async function RegisterNewCollaborator(app: FastifyInstance) {
-    app.post('/register/collaborator', async (req, reply) => {
+    app.post('/register/collaborator', { preHandler: app.authenticate }, async (req, reply) => {
         const collaboratorSchema = z.object({
             name: z.string(),
             salary: z.number(),
