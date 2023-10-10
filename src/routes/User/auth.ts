@@ -16,7 +16,7 @@ export function Auth(app: FastifyInstance, jwtSecret: String | undefined) {
         }
       });
 
-    app.post('/login', { preHandler: app.authenticate }, async (req, reply) => {
+    app.post('/login', async (req, reply) => {
         const userSchema = z.object({
             username: z.string().uuid(),
             password: z.string().uuid(),
