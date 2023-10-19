@@ -2,6 +2,15 @@ import { prisma } from "../../lib/prisma"
 import { FastifyInstance } from "fastify";
 import { z } from 'zod'
 
+interface Collaborator {
+    id: string,
+    name: string,
+    jobRole: string,
+    salary: number,
+    influence: number,
+    leaderId: string
+}
+
 export async function RegisterNewCollaborator(app: FastifyInstance) {
     app.post('/register/collaborator', { preHandler: app.authenticate }, async (req, reply) => {
         const collaboratorSchema = z.object({
@@ -35,6 +44,15 @@ export async function RegisterNewCollaborator(app: FastifyInstance) {
             }
         })
 
+        const collaborators = await prisma.collaborator.findMany({
+            where: {
+                leaderId: leader.id
+            }
+        })
+
+        const filteredCollaborators = collaborators.filter(collaborator => collaborator.leaderId === leader.id);
+        const totalWeight = filteredCollaborators.reduce((acc, collaborator) => acc + collaborator.influence, 0);
+        
         if(leader) {
             await prisma.leader.update({
                 where: {
@@ -43,12 +61,12 @@ export async function RegisterNewCollaborator(app: FastifyInstance) {
                 
                 data: {
                     monthlyIncome: leader.monthlyIncome + salary,
-                    numberOfCollaborators: leader.numberOfCollaborators + 1
+                    numberOfCollaborators: leader.numberOfCollaborators + 1,
+                    averageInfluence: totalWeight/filteredCollaborators.length
                 }
             })
         }
 
         return reply.status(201).send('Registered Collaborator')
     })
-}
-  
+} 
