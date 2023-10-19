@@ -3,8 +3,8 @@ POST http://localhost:3333/register/leader
 Content-Type: application/json
 
 {
-    "name": "Maria Joaquina",
-    "jobId": "b64fba12-0573-49bb-8086-71c4071c6d64"
+    "name": "Mário",
+    "jobId": "9c18b29f-1fab-4d17-86c7-a63b2b660a7a"
 }
 
 
@@ -15,10 +15,10 @@ POST http://localhost:3333/register/collaborator
 Content-Type: application/json
 
 {
-    "name": "Marina Silva",
-    "salary": 1220,
-    "jobId": "85c15527-5fa7-4bf7-8c07-402ee582d71e",
-    "leaderId": "6b6a5e38-7e8c-4c7f-9b5e-8e2640fe5d9f"
+    "name": "Ivanildo",
+    "salary": 3200,
+    "jobId": "3b4a5e47-d382-490f-ae4d-4421e2f608a8",
+    "leaderId": "61b92c7d-3060-4026-bdb0-cb6147803595"
 }
 
 ###
@@ -42,4 +42,16 @@ Content-Type: application/json
     "username": "24ee0aed-c621-462d-b39a-092d9bcdb9e1",
     "password": "2ca06647-3b9a-4491-9d4a-93f621631dc9"
 }
+
+
+###
+
+# @name get-all-leaders-by-influence
+GET http://localhost:3333/influence
+
+
+
+
+
+
 

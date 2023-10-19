@@ -4,6 +4,7 @@ import { RegisterNewCollaborator } from "./routes/Collaborator/register-new-coll
 import { GetAllLeaders } from "./routes/Leader/get-all-leaders"
 import { GetAllCollaborators } from "./routes/Collaborator/get-all-collaborators"
 import { Auth } from './routes/User/auth'
+import { SortLeadersByInfluence } from "./routes/Leader/sort-leaders-by-influence"
 const fastifyCors = require('fastify-cors');
 
 const jwtSecret = process.env.JWT_SECRET
@@ -22,6 +23,7 @@ app.register(RegisterNewLeader)
 app.register(RegisterNewCollaborator)
 app.register(GetAllLeaders)
 app.register(GetAllCollaborators)
+app.register(SortLeadersByInfluence)
 
 app.listen({
     host: '0.0.0.0',
