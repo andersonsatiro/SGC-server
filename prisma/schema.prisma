@@ -22,6 +22,7 @@ model Leader {
   jobRole               String
   numberOfCollaborators Int            @default(0)
   monthlyIncome         Float          @default(0.0)
+  averageInfluence      Float          @default(0.0)
   influence             Int
   collaborators         Collaborator[]
 }
