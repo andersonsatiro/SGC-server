@@ -47,7 +47,27 @@ Content-Type: application/json
 ###
 
 # @name get-all-leaders-by-influence
-GET http://localhost:3333/influence
+GET http://localhost:3333/leaders/influence
+
+
+###
+
+# @name get-all-jobs-positions
+GET http://localhost:3333/jobPositions
+
+
+###
+
+# @name get-all-leadership-positions
+GET http://localhost:3333/leadershipPositions
+
+
+###
+
+# @name check-leader-name
+GET http://localhost:3333/leader/Maria
+
+
 
 
 
