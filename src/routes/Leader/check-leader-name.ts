@@ -3,7 +3,7 @@ import { z } from "zod";
 import { prisma } from "../../lib/prisma";
 
 export async function CheckLeaderName(app: FastifyInstance) {
-    app.get('/leader/:name', async (req) => {
+    app.get('/leader/:name', { preHandler: app.authenticate }, async (req) => {
 
         const paramsSchema = z.object({
             name: z.string(),
@@ -13,13 +13,15 @@ export async function CheckLeaderName(app: FastifyInstance) {
         try {
             const leaderExist = await prisma.leader.findFirstOrThrow({
                 where: {
-                    name,
+                    name: {
+                        equals: name.toLowerCase()
+                    }
                 }
             })
+            return leaderExist ? true : false
 
-            return leaderExist.name
         } catch(error){
-            return null
+            return false
         }
 
     })
