@@ -14,7 +14,8 @@ export async function CheckLeaderName(app: FastifyInstance) {
             const leaderExist = await prisma.leader.findFirstOrThrow({
                 where: {
                     name: {
-                        equals: name.toLowerCase()
+                        equals: name,
+                        mode: 'insensitive',
                     }
                 }
             })
