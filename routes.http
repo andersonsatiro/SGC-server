@@ -67,6 +67,45 @@ GET http://localhost:3333/leadershipPositions
 # @name check-leader-name
 GET http://localhost:3333/leader/Maria
 
+###
+
+# @name remove-collaborator
+PUT http://localhost:3333/remover/colaborador
+Content-Type: application/json
+
+{
+    "ids": [
+        "c843f799-1c15-4819-88dd-216495878ceb"
+    ]
+}
+
+###
+
+# @name remove-lideranca
+PUT http://localhost:3333/remover/lideranca
+Content-Type: application/json
+
+{
+    "ids": [
+        "8ccb221d-028e-43c8-8309-7156f0585615",
+        "f04f2f74-12fd-4699-895b-fb9ae4b00bee"
+    ],
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjI0ZWUwYWVkLWM2MjEtNDYyZC1iMzlhLTA5MmQ5YmNkYjllMSIsImlhdCI6MTcwNzQwMzQwMiwiZXhwIjoxNzA3NDIxNDAyfQ.Zx8ix-xDJg_iCfGCZ08aaAWj6BrEg9cw8wpZlWkVJW4"
+}
+
+###
+
+# @name create-new-leadership-position
+POST http://localhost:3333/leaders/novo-cargo
+Content-Type: application/json
+
+{
+    "nameOfPosition": "Administrador(a)",
+    "weightOfThePosition": 3
+}
+
+
+
 
 
 

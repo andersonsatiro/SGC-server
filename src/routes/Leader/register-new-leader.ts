@@ -22,7 +22,7 @@ export async function RegisterNewLeader(app: FastifyInstance){
             data: {
                 name,
                 jobRole: leadershipPositions.name,
-                influence: leadershipPositions.influence
+                influence: leadershipPositions.influence,
             }
         })
 

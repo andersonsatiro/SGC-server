@@ -8,6 +8,11 @@ import { SortLeadersByInfluence } from "./routes/Leader/sort-leaders-by-influenc
 import { GetAllJobPositions } from "./routes/Positions/get-all-job-positions"
 import { GetAllLeadershipPositions } from "./routes/Positions/get-all-leadership-positions"
 import { CheckLeaderName } from "./routes/Leader/check-leader-name"
+import { CheckCollaboratorName } from "./routes/Collaborator/check-collaborator-name"
+import { RemoveCollaborators } from "./routes/Collaborator/remove-collaborators"
+import { RemoveLeaders } from "./routes/Leader/remove-leaders"
+import { CreateNewLeadershipPosition } from "./routes/Positions/create-new-leadership-position"
+import { CreateNewJobPosition } from "./routes/Positions/create-new-job-position"
 const fastifyCors = require('fastify-cors');
 
 const jwtSecret = process.env.JWT_SECRET
@@ -30,6 +35,11 @@ app.register(SortLeadersByInfluence)
 app.register(GetAllJobPositions)
 app.register(GetAllLeadershipPositions)
 app.register(CheckLeaderName)
+app.register(CheckCollaboratorName)
+app.register(RemoveCollaborators)
+app.register(RemoveLeaders)
+app.register(CreateNewLeadershipPosition)
+app.register(CreateNewJobPosition)
 
 app.listen({
     host: '0.0.0.0',

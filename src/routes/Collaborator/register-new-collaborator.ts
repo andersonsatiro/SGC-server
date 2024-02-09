@@ -8,7 +8,8 @@ interface Collaborator {
     jobRole: string,
     salary: number,
     influence: number,
-    leaderId: string
+    leaderName: string,
+    leaderId: string,
 }
 
 export async function RegisterNewCollaborator(app: FastifyInstance) {
@@ -17,16 +18,24 @@ export async function RegisterNewCollaborator(app: FastifyInstance) {
             name: z.string(),
             salary: z.number(),
             jobId: z.string().uuid(),
-            leaderId: z.string().uuid()
+            leaderId: z.string().uuid(),
+            influence: z.number()
         })
 
-        const { name, salary, jobId, leaderId } = collaboratorSchema.parse(req.body)
+        const { name, salary, jobId, leaderId, influence } = collaboratorSchema.parse(req.body)
 
         const jobPositions = await prisma.jobPositions.findFirstOrThrow({
             where: {
                 id: jobId
             }
         })
+
+        let influenceValue
+        if(influence >= 1 && influence <= 5){
+            influenceValue = influence
+        } else {
+            influenceValue = jobPositions.influence
+        }
         
         const leader = await prisma.leader.findFirstOrThrow({
             where: {
@@ -39,7 +48,8 @@ export async function RegisterNewCollaborator(app: FastifyInstance) {
                 name,
                 jobRole: jobPositions.name,
                 salary,
-                influence: jobPositions.influence,
+                influence: influenceValue,
+                leaderName: leader.name,
                 leaderId,
             }
         })

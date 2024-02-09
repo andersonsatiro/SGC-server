@@ -36,6 +36,7 @@ model Collaborator {
   influence Int
 
   leader   Leader @relation(fields: [leaderId], references: [id])
+  leaderName String
   leaderId String
 }
 
