@@ -21,7 +21,7 @@ Auth(app, jwtSecret)
 
 
 app.register(fastifyCors, {
-    origin: 'http://localhost:5173',
+    origin: 'https://sgc-web-orpin.vercel.app',
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type, Authorization', 
     credentials: true,
